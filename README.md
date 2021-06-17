@@ -1,4 +1,4 @@
-# Udacity Data Structures & Algorithms, Project 2: Show Me The Data Structures
+# Project 2: Show Me The Data Structures
 
 Answers for the Project 2 Show Me the Data Structures of the Data Structures and Algorithms Course offered by Udacity.
 
