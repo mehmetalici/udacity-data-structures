@@ -1,9 +1,11 @@
-# udacity-data-structures
+# Udacity Data Structures & Algorithms, Project 2: Show Me The Data Structures
 
-Answers for the Project 2: Show Me the Data Structures of the Data Structures and Algorithms Course offered by Udacity.
+Answers for the Project 2 Show Me the Data Structures of the Data Structures and Algorithms Course offered by Udacity.
 
-## Explanations
-Below is found the explanations for each answer. It does not include a detailed walkthrough of the code, but provides a reasoning behind the decisions taken. For example, reasons for choosing a data structure as well as the efficiencies of the solutions.
+## Performance Analysis
+The analysis for each answer is provided in the following sections. 
+
+It does not include a detailed walk-through of the code, but provides a reasoning behind the decisions taken. For example, reasons for choosing a data structure as well as the efficiencies of the solutions.
 
 ## Problem 1: Least Recently Used (LRU) Cache
 The entries to the cache are given as key-value pairs. Therefore, these entries are cached, i.e kept, using a dictionary which provides get and set operations in constant time, i.e O(1). 
