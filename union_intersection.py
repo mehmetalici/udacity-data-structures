@@ -30,7 +30,6 @@ class LinkedList:
             node = node.next
 
         node.next = Node(value)
-
     def size(self):
         size = 0
         node = self.head
@@ -39,26 +38,29 @@ class LinkedList:
             node = node.next
         return size
 
-
-    def to_set(self):
+    def get_as_set(self):
+        out_set = set()
         node = self.head
         while node:
-            pass
+            out_set.add(node.value)
+            node = node.next
+        return out_set
+
+
+def set_to_linkedlist(in_set: set) -> LinkedList:
+    out = LinkedList()
+
+    for val in in_set:
+        out.append(val)
+
+    return out
+
 
 def union(llist_1, llist_2):
-    USE_SETS = 1
-
-    if USE_SETS:
-        set1 = set()
-        head = llist_1
-        while head:
-
-
-
+    return set_to_linkedlist(llist_1.get_as_set() | llist_2.get_as_set())
 
 def intersection(llist_1, llist_2):
-    # Your Solution Here
-    pass
+    return set_to_linkedlist(llist_1.get_as_set() & llist_2.get_as_set())
 
 
 # Test case 1
