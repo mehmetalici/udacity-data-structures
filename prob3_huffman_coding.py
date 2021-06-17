@@ -22,6 +22,11 @@ class Node:
         return self.freq < other.freq
 
 
+class Tree:
+    def __init__(self, root=None) -> None:
+        self.root = root
+
+
 def huffman_encoding(data: str):
     hf_tree = build_huffman_tree(data)
     codes = generate_encoded_data(hf_tree)
@@ -29,8 +34,8 @@ def huffman_encoding(data: str):
     return encoded, hf_tree
 
 
-def generate_encoded_data(hf_tree: Node):     
-    codes = _get_codes(hf_tree, str())
+def generate_encoded_data(hf_tree: Tree):     
+    codes = _get_codes(hf_tree.root, str())
     return dict(codes)
 
 
@@ -48,7 +53,7 @@ def _get_codes(node: Node, accumulating_code: str):
     return codes
 
 
-def build_huffman_tree(data: str) -> list:
+def build_huffman_tree(data: str) -> Tree:
     # Construct the tree
     priority_queue = []
     for char, freq in Counter(data).items():
@@ -73,18 +78,20 @@ def build_huffman_tree(data: str) -> list:
             if child is not None:
                 child.bit = bit
                 nodes_in_level.append(child)
-    
-    return priority_queue[0]
+
+    hf_tree = Tree(priority_queue[0])
+    return hf_tree
 
 
-def huffman_decoding(data: str, tree: Node):
+def huffman_decoding(data: str, tree: Tree):
     decoded = ""
 
-    node = tree
+    root = tree.root
+    node = root
     for bit in data:
         if node.char is not None:
             decoded += node.char
-            node = tree
+            node = root
         if bit == LEFT_BIT:
             node = node.left
         elif bit == RIGHT_BIT:
