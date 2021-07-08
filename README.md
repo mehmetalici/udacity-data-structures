@@ -10,7 +10,8 @@ It does not include a detailed walk-through of the code, but provides a reasonin
 ## Problem 1: Least Recently Used (LRU) Cache
 The entries to the cache are given as key-value pairs. Therefore, these entries are cached, i.e kept, using a dictionary which provides get and set operations in constant time, i.e O(1). 
 
-If the LRU Cache hits its capacity when adding a new entry, it is specified to remove the LRU entry and replace it with the new one. To satisfy this specification in constant time, a UniqueEltQueue is used.
+If the LRU Cache hits its capacity when adding a new entry, it is specified to remove the LRU entry and replace it with the new one. To satisfy this specification in constant time, a `UniqueEltQueue` is used.
+
 
 ### UniqueEltQueue
 In UniqueEltQueue, the built-in Deque was employed as its underlying data structure. The enqueue operation is trivially enqueuing from left to Deque, and therefore O(1). 
@@ -19,7 +20,11 @@ On the other hand, the dequeue operation, however, does not directly dequeue the
 
 If an element is found to appear more than once, it removes the element from the queue and continues until it hits a unique element. The unique element is, then, dequeued and returned from the function. 
 
-In similar fashion to enqueue, the dequeue operation is also designed to be O(1) using a Counter to keep track of the repeated elements. 
+In similar fashion to enqueue, the dequeue operation is also designed to be O(1) using a Counter to keep track of the repeated elements.
+
+
+### Space Complexity
+At the worst case, where we perform `get_value` every time, the corresponding value will be added to the `UniqueEltQueue`. Therefore, the space complexity is O(n), where n is the number of values, on each of which we use `get_value` method. 
 
 ## Problem 2: File Recursion
 For this problem, the goal is to write code for finding all files under a directory (and all directories beneath it) that end with a suffix, such as ".c".
@@ -31,6 +36,10 @@ All files and directories are visited only once. Therefore, the time complexity 
 The recursion should usually be avoided because it does not scale to big input sizes.  More specifically, in each recursion call, a new block is allocated in the stack for function's local variables. For huge inputs, this might cause the stack to overflow after a certain recursion depth. For security reasons, Python throws the RecursionException when the recursion depth is exceeds as default 1000.
 
 In the problem space, however, it is very unlikely that the directory depth exceeds 1000 and therefore the recursion was employed over loop-based techniques.
+
+
+### Space Complexity
+Since files with a desired suffix are added to the `all_files` list, the solution is O(n) in space.  
 
 ## Problem 3: Huffman Coding
 In this problem, Huffman data compression technique is implemented. The solution consists of two parts, namely Huffman Encoding and Huffman Decoding. We will walk through each part, focusing on the efficiency. 
@@ -65,19 +74,30 @@ Once we have the encoded string as well as the corresponding Huffman tree, the s
 
 *: sys.sizeof() was used to determine the sizes. This function does not determine the size of the data types that hold the messages, like in C, but instead the objects that hold additional overhead.  
 
+### Space Complexity
+Since there is one node for each individual character in the Huffmann Tree, the space complexity is O(n).  
 
 ## Problem 4: Active Directory
 This problem was solved through recursion because a group can consist of group(s). There are two subsequent base cases in the function. First one checks if the user is in the current group. Subsequent base case checks if there are no subgroups in the current group. As long as the base cases are not reached, we do a linear search for subgroups and recur for each of them.
 
 The time complexity of the solution is O(n+m) = O(n), with n, m being the total number of users and groups, respectively. 
 
+### Space Complexity
+Since the groups and users are traversed without allocating a memory block, for example, by creating an extra array, and a variable of Boolean type is returned regardless of the input size, the algorithm takes constant space. Therefore, the space complexity is O(1). 
+
 ## Problem 5: Blockchain
 The Blockchain is implemented by a Blockchain class with its internal "chain" structure represented by a List. Adding a Block to the list is, therefore, O(1). Furthermore, a hash function is implemented that hashes whole the object.    
+
+### Space Complexity
+Since every block is hashed and then stored in a List, the space complexity is O(n).
 
 
 ## Problem 6: Union & Intersection
 Union and intersection operations for linked lists are realized by converting them to sets, which is O(n). Furthermore, the intersection and union operations are performed on the sets. The resulting set is converted back to a linkedlist before returning. 
 
 Converting from sets to LinkedLists, and vica versa, is O(n). Moreover, Python provides | operator for union and & for intersection on sets, with time complexities O(n+m) and O(min(m, n)), respectively. Therefore the overall time complexity is O(n) for both operations.
+
+### Space Complexity
+First, a LinkedList is created out of the input list. Then, in a similar fashion, a set is created out of the LinkedList to perform union and intersection operations. All creations take O(n) space, and therefore, the overall space complexity is O(n).
 
  

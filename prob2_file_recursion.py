@@ -32,5 +32,12 @@ def find_files(suffix: str, path: str) -> list:
 
 if __name__ == "__main__":
     print("\n".join(find_files(".c", ".")))
-
+    try:
+        print(find_files(".c", ""))  
+    except FileNotFoundError:
+        print("Pass")
+    try:
+        print(find_files(".c", "an_invalid_path")) 
+    except FileNotFoundError:
+        print("Pass")
 

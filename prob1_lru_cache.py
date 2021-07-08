@@ -1,6 +1,7 @@
 from collections import deque
 from collections import Counter
 
+
 class UniqueEltQueue:
     def __init__(self):
         self.counter = Counter()
