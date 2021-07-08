@@ -1,6 +1,6 @@
 class Group:
-    def __init__(self, _name):
-        self.name = _name
+    def __init__(self, name):
+        self.name = name
         self.groups = []
         self.users = []
 
@@ -20,17 +20,6 @@ class Group:
         return self.name
 
 
-parent = Group("parent")
-child = Group("child")
-sub_child = Group("subchild")
-
-sub_child_user = "sub_child_user"
-sub_child.add_user(sub_child_user)
-
-child.add_group(sub_child)
-parent.add_group(child)
-
-
 def is_user_in_group(user: str, group: Group):
     """
     Return True if user is in the group, False otherwise.
@@ -39,6 +28,8 @@ def is_user_in_group(user: str, group: Group):
       user(str): user name/id
       group(class:Group): group to check user membership against
     """
+    if user == "":
+        raise Exception("User is empty")
     if user in group.get_users():
         return True
     if len(group.get_groups()) == 0:
@@ -48,8 +39,4 @@ def is_user_in_group(user: str, group: Group):
         if is_user_in_group(user, subgroup):
             return True
 
-for group in [parent, child, sub_child]:
-    if not is_user_in_group("Mehmet", group):
-        print(f"Fail in {group.get_name()}")
-    else:
-        print(f"Success. {sub_child_user} is in {group.get_name()}")
+

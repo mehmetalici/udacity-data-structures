@@ -27,7 +27,14 @@ class Tree:
         self.root = root
 
 
+def _is_elements_identical(data: any):
+    return all(ch == data[0] for ch in data)
+
+
 def huffman_encoding(data: str):
+    if _is_elements_identical(data):
+        raise ValueError("All elements are identical")
+
     hf_tree = build_huffman_tree(data)
     codes = generate_encoded_data(hf_tree)
     encoded = "".join(map(lambda ch: codes[ch], data))
@@ -85,7 +92,6 @@ def build_huffman_tree(data: str) -> Tree:
 
 def huffman_decoding(data: str, tree: Tree):
     decoded = ""
-
     root = tree.root
     node = root
     for bit in data:
@@ -105,17 +111,40 @@ def huffman_decoding(data: str, tree: Tree):
 
 if __name__ == "__main__":
 
+    # Test case 1: Usual Operation
     a_great_sentence = "The bird is the word"
 
-    print ("The size of the data is: {}\n".format(sys.getsizeof(a_great_sentence)))
-    print ("The content of the data is: {}\n".format(a_great_sentence))
+    print("The size of the data is: {}\n".format(sys.getsizeof(a_great_sentence)))
+    print("The content of the data is: {}\n".format(a_great_sentence))
 
     encoded_data, tree = huffman_encoding(a_great_sentence)
 
-    print ("The size of the encoded data is: {}\n".format(sys.getsizeof(int(encoded_data, base=2))))
-    print ("The content of the encoded data is: {}\n".format(encoded_data))
+    print("The size of the encoded data is: {}\n".format(sys.getsizeof(int(encoded_data, base=2))))
+    print("The content of the encoded data is: {}\n".format(encoded_data))
 
     decoded_data = huffman_decoding(encoded_data, tree)
 
-    print ("The size of the decoded data is: {}\n".format(sys.getsizeof(decoded_data)))
-    print ("The content of the encoded data is: {}\n".format(decoded_data))
+    print("The size of the decoded data is: {}\n".format(sys.getsizeof(decoded_data)))
+    print("The content of the encoded data is: {}\n".format(decoded_data))
+
+
+    # Test case 2: Empty String
+    empty_string = "" 
+    try:
+        encoded_data, tree = huffman_encoding(empty_string)
+        print("The content of the encoded data is: {}\n".format(encoded_data))
+        decoded_data = huffman_decoding(encoded_data, tree)
+        print("The content of the encoded data is: {}\n".format(decoded_data))
+    except Exception:
+        print("Empty String test case pass.")
+
+
+    # Test case 3: String of identical elements
+    empty_string = "AAAAAA" 
+    try:
+        encoded_data, tree = huffman_encoding(empty_string)
+        print("The content of the encoded data is: {}\n".format(encoded_data))
+        decoded_data = huffman_decoding(encoded_data, tree)
+        print("The content of the encoded data is: {}\n".format(decoded_data))
+    except ValueError:
+        print("Identical Elements test pass.")

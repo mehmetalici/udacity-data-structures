@@ -75,16 +75,29 @@ def test_big_lists():
 
 def test_empty_lists():
     print("Testing empty lists...")
-
+    # Test two empty lists 
     linked_list_1 = LinkedList()
     linked_list_2 = LinkedList()
     expected_soln_union = LinkedList()
     expected_soln_intersection = LinkedList()
-
+   
+    # Return True
     print(union(linked_list_1,linked_list_2).get_as_list() == expected_soln_union.get_as_list())  
     # Return True
     print(intersection(linked_list_1,linked_list_2).get_as_list() == expected_soln_intersection.get_as_list())  
+    
+    # Test one empty list
+    for i in range(5):
+        linked_list_1.append(i)
+
+    expected_soln_union = linked_list_1
+    expected_soln_intersection = LinkedList()
+    
     # Return True
+    print(union(linked_list_1, linked_list_2).get_as_list() == expected_soln_union.get_as_list())
+    # Return True
+    print(intersection(linked_list_1, linked_list_2).get_as_list() == expected_soln_intersection.get_as_list())
+
 
 
 if __name__ == "__main__":
