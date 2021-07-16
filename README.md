@@ -102,4 +102,8 @@ Converting from sets to LinkedLists, and vica versa, is O(n). Moreover, Python p
 ### Space Complexity
 First, a LinkedList is created out of the input list. Then, in a similar fashion, a set is created out of the LinkedList to perform union and intersection operations. All creations take O(n) space, and therefore, the overall space complexity is O(n).
 
+## Acknowledgements
+Images at the Huffman Coding section are obtained from udacity.com. 
+
+
  
