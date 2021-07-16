@@ -54,11 +54,13 @@ In this section, a Huffman tree is built in a bottom-up approach and the steps a
 
     A priority queue can be implemented with a variety of data structures. For efficiency, we use min heaps as underlying data structure, which gives O(logn) performance for both the find-min and insert operations.   
 
+    ![pq](images/pq.png)
 3. The minimum frequency pairs are popped out of the priority queue. 
 4. A new node was created with a frequency being the sum of the popped out nodes. 
 5. #3 and #4 are repeated until there is a single element left in the priority queue.A binary tree data structure is implemented to generate the Huffman Tree. For this purpose, the popped out nodes are connected as left and right child and parented by the created new node.  
 6. For each node in the Hufmann Tree, bits are assigned. To do this, a bit property is introduced to Node class.
 
+    ![huffmann-tree](images/hf_tree.png)
 #### Phase 2: Generate the Encoded Data
 7. The Hoffman tree was traversed to generate unique binary code for each character. The traversal was implemented as pre-order DFS because the bit in parent node is used to create the bits for children nodes. 
 
